@@ -333,7 +333,7 @@ VIEWS.discover = async (v, custom) => {
       ${d.recommendations.map((r, i) => `<div class="rank ${i === 0 ? "best" : ""}"><div class="pos">${i + 1}</div><div class="swatch t-${r.card.tier}"></div>
         <div class="grow"><b>${esc(r.card.name)}</b> <span class="small muted">${esc(r.card.issuer)} · fee ${inr(r.card.annual_fee)}</span>
         <div class="small muted">${r.why.map(esc).join(" · ") || "Marginal improvement"}</div></div>
-        <div><div class="big ${r.incremental_value > 0 ? "good" : "bad"}">${r.incremental_value >= 0 ? "+" : ""}${inr(r.incremental_value)}</div><div class="small muted" style="text-align:right">per year</div></div></div>`).join("")}
+        <div><div class="big ${r.incremental_value > 0 ? "good" : r.incremental_value < 0 ? "bad" : "muted"}">${r.incremental_value >= 0 ? "+" : ""}${inr(r.incremental_value)}</div><div class="small muted" style="text-align:right">per year</div></div></div>`).join("")}
       ${d.best_pair ? `<div class="panel" style="margin-top:12px;background:var(--panel2)">🧩 <b>Starting from scratch?</b> The best 2-card combo for your spending is <b>${d.best_pair.cards.map(esc).join(" + ")}</b> — ≈ <b class="good">${inr(d.best_pair.annual_net)}</b>/yr net.</div>` : ""}
     </div></div>
   <div class="panel" style="margin-top:16px"><h2>How your current wallet performs</h2><table><tr><th>Card</th><th class="num">Routed spend/yr</th><th class="num">Rewards</th><th class="num">Milestones</th><th class="num">Fee</th><th class="num">Net</th></tr>

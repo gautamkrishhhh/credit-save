@@ -151,7 +151,8 @@ def spend_profile(db: Database, months: int = 3, use_forecast: bool = True) -> d
     window = last_n_months(months)
     start = window[0] + "-01"
     end = month_bounds(date.fromisoformat(window[-1] + "-01"))[1]
-    txns = [t for t in db.list_transactions(start, end) if not t["is_refund"]]
+    # one-off anomalies (a laptop, a gold purchase) aren't recurring spend
+    txns = [t for t in db.list_transactions(start, end) if not t["is_refund"] and not t["is_anomaly"]]
     if len(txns) < 10:
         return {"source": "default", "months": 0, "buckets": dict(DEFAULT_PROFILE)}
     active = sorted({t["txn_date"][:7] for t in txns})
