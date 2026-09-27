@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CreditSage</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦉</text></svg>">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><span class="logo">🦉</span><div><b>CreditSage</b><small>rewards co-pilot</small></div></div>
+      <nav id="nav">
+        <a href="#/dashboard" data-route="dashboard"><i>◧</i>Dashboard</a>
+        <a href="#/which-card" data-route="which-card"><i>⚡</i>Which Card?</a>
+        <a href="#/sage" data-route="sage"><i>✦</i>Ask Sage <em class="pill">AI</em></a>
+        <a href="#/wallet" data-route="wallet"><i>▭</i>My Cards</a>
+        <a href="#/transactions" data-route="transactions"><i>≡</i>Transactions</a>
+        <a href="#/rewards" data-route="rewards"><i>★</i>Rewards & Redeem</a>
+        <a href="#/discover" data-route="discover"><i>◎</i>Discover Cards</a>
+        <a href="#/compare" data-route="compare"><i>⇄</i>Compare</a>
+        <a href="#/offers" data-route="offers"><i>%</i>Offers</a>
+        <a href="#/insights" data-route="insights"><i>∿</i>Insights & ML</a>
+      </nav>
+      <div class="side-foot">
+        <label>Point valuation
+          <select id="valueMode">
+            <option value="best">Best (transfers)</option>
+            <option value="portal">Travel portal</option>
+            <option value="cash">Cash / statement</option>
+          </select>
+        </label>
+        <div class="row gap">
+          <button class="btn ghost sm" id="seedBtn" title="Load a realistic demo wallet">Load demo</button>
+          <button class="btn ghost sm" id="resetBtn" title="Delete all data">Reset</button>
+        </div>
+        <div id="mlBadge" class="ml-badge">ML: training…</div>
+      </div>
+    </aside>
+    <main>
+      <header class="topbar">
+        <button class="btn ghost sm menu" id="menuBtn">☰</button>
+        <h1 id="title">Dashboard</h1>
+        <div class="quick">
+          <input id="quickAsk" placeholder="Ask Sage… e.g. “Swiggy ₹800”" autocomplete="off">
+        </div>
+      </header>
+      <section id="view" class="view"></section>
+    </main>
+  </div>
+  <div id="modal" class="modal hidden"><div class="modal-box" id="modalBox"></div></div>
+  <div id="toast" class="toast hidden"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
